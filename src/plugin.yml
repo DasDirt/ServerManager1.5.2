@@ -1,0 +1,6 @@
+name: ServerManager
+version: 0.0.1
+main: de.dirty.ServerManager
+author: DasDirt
+commands:
+  deathItems:
