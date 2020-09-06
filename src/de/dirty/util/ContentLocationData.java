@@ -1,26 +1,27 @@
 package de.dirty.util;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class ContentLocationData {
-    private Player player;
+import java.io.Serializable;
+
+public class ContentLocationData implements Serializable {
+    private String playerUUID;
     private Location location;
     private ItemStack[] itemStacks;
 
-    public ContentLocationData(Player player, Location location, ItemStack[] itemStacks) {
-        this.player = player;
+    public ContentLocationData(String playerUUID, Location location, ItemStack[] itemStacks) {
+        this.playerUUID = playerUUID;
         this.location = location;
         this.itemStacks = itemStacks;
     }
 
-    public Player getPlayer() {
-        return player;
+    public String getPlayerUUID() {
+        return playerUUID;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayerUUID(String playerUUID) {
+        this.playerUUID = playerUUID;
     }
 
     public Location getLocation() {

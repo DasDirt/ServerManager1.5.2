@@ -1,13 +1,11 @@
 package de.dirty;
 
-import de.dirty.commands.DeathItemsCommand;
+import de.dirty.commands.MenuCommand;
 import de.dirty.listener.DeathListener;
-import de.dirty.util.ContentLocationData;
+import de.dirty.listener.InventoryListener;
+import de.dirty.util.GlobalInstances;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ServerManager extends JavaPlugin {
@@ -15,8 +13,14 @@ public class ServerManager extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println("Loading ServerManager1.5.2");
+        GlobalInstances.createInvs();
         Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
-        getCommand("deathItems").setExecutor(new DeathItemsCommand());
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
+        System.out.println("Enabling keepInventory for every world");
+        for (World world : Bukkit.getWorlds()) {
+            world.setGameRuleValue("keepInventory", "true");
+        }
+        getCommand("menu").setExecutor(new MenuCommand());
         super.onEnable();
     }
 
